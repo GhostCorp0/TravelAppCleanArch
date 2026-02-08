@@ -32,16 +32,19 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  flutter_riverpod: ^2.2.4
-  path_provider: ^2.1.1
-  dartz: ^0.10.1
-  intl: ^0.18.1
+  hive:
+  hive_flutter:
+  flutter_riverpod:
+  path_provider:
+  dartz:
+  intl:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  hive_generator:
+  build_runner:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
