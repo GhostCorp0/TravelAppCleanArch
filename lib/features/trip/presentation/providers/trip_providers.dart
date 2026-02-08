@@ -57,9 +57,10 @@ class TripListNotifier extends StateNotifier<List<Trip>> {
 
   Future<void> removeTrip(int tripId) async{
     await _deleteTrip(tripId);
+    state = await _getTrips();
   }
 
   Future<void> loadTrips() async {
-    await _getTrips();
+    state = await _getTrips();
   }
 }

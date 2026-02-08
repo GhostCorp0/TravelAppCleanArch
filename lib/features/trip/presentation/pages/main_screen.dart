@@ -16,20 +16,21 @@ class MainScreen extends ConsumerWidget {
       _currentPage.value = _pageController.page!.round();
     });
     String profilePic =
-        "https://thumbs.dreamstime.com/b/d-icon-avatar-cartoon-cute-freelancer-woman-working-online-learning-laptop-transparent-png-background-works-embodying-345422695.jpg";
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoKZ5ev0ls_lfr-UBnDRwp5-Jh2u3INVeJig&s";
 
     return Scaffold(
       appBar: AppBar(
         actions: [
           Padding(
-            padding: EdgeInsets.all(100),
+            padding: const EdgeInsets.only(right: 12, top: 8, bottom: 8),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
+              borderRadius: BorderRadius.circular(30),
               child: Image.network(
                 profilePic,
                 fit: BoxFit.cover,
-                height: 60,
-                width: 60,
+                height:60,
+                width:60,
+                errorBuilder: (_, __, ___) => Icon(Icons.person, size: 44, color: Colors.grey[400]),
               ),
             ),
           ),

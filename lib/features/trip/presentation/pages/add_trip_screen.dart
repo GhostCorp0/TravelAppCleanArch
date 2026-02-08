@@ -9,7 +9,7 @@ class AddTripScreen extends ConsumerWidget {
   final _titleController = TextEditingController(text: "City 1");
   final _descController = TextEditingController(text: "Best city over");
   final _locationController = TextEditingController(text: "Paris");
-  final _pictureController = TextEditingController(text: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbW5Jh3t8QI-Df0IKmP-dMka8DosHdvSV2jw&s");
+  final _pictureController = TextEditingController(text: "https://static.vecteezy.com/system/resources/thumbnails/045/132/934/small/a-beautiful-picture-of-the-eiffel-tower-in-paris-the-capital-of-france-with-a-wonderful-background-in-wonderful-natural-colors-photo.jpg");
 
   List<String> pictures = [];
 
@@ -17,8 +17,11 @@ class AddTripScreen extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     return Form(
       key: _formKey,
-      child: Column(
-        children: [
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
           TextFormField(
             controller: _titleController,
             decoration:InputDecoration(labelText: "Title"),
@@ -35,7 +38,7 @@ class AddTripScreen extends ConsumerWidget {
             controller: _pictureController,
             decoration:InputDecoration(labelText: "Photo"),
           ),
-          ElevatedButton(onPressed:(){
+          ElevatedButton(onPressed:() async {
             pictures.add(_pictureController.text);
             if(_formKey.currentState!.validate()){
               final newTrip = Trip(
@@ -45,11 +48,13 @@ class AddTripScreen extends ConsumerWidget {
                 location:_locationController.text,
                 photos: pictures
               );
-              ref.read(tripListNotifierProvider.notifier).addNewTrip(newTrip);
-              ref.watch(tripListNotifierProvider.notifier).loadTrips();
+              final notifier = ref.read(tripListNotifierProvider.notifier);
+              await notifier.addNewTrip(newTrip);
+              await notifier.loadTrips();
             }
           }, child:Text("Add trip"))
-        ],
+          ],
+        ),
       ),
     );
   }
